@@ -31,14 +31,16 @@ export function TopicLanding({ topicSlug, intro }: { topicSlug: string; intro: R
         <p className="mt-3 text-neutral-500 dark:text-neutral-500">Lessons coming soon.</p>
       )}
 
-      <p className="mt-6">
-        <Link
-          href={`/${topic.slug}/quiz`}
-          className="text-blue-700 underline decoration-blue-700/30 underline-offset-2 hover:decoration-blue-700 dark:text-blue-400 dark:decoration-blue-400/30 dark:hover:decoration-blue-400"
-        >
-          Quiz →
-        </Link>
-      </p>
+      {topic.hasQuiz !== false && (
+        <p className="mt-6">
+          <Link
+            href={`/${topic.slug}/quiz`}
+            className="text-blue-700 underline decoration-blue-700/30 underline-offset-2 hover:decoration-blue-700 dark:text-blue-400 dark:decoration-blue-400/30 dark:hover:decoration-blue-400"
+          >
+            Quiz →
+          </Link>
+        </p>
+      )}
     </div>
   );
 }

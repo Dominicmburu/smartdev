@@ -1,4 +1,6 @@
-import { Example, Callout } from "@/components/Callout";
+import { Walkthrough, Callout } from "@/components/Callout";
+import { Figure } from "@/components/Figure";
+import { LibreCrawlFlowDiagram } from "@/components/diagrams/LibreCrawlFlowDiagram";
 
 export default function LibreCrawlLesson1Page() {
   return (
@@ -39,7 +41,7 @@ export default function LibreCrawlLesson1Page() {
 
       <h2>How it actually works, step by step</h2>
       <ul>
-        <li>You give LibreCrawl a starting URL (e.g. example.com).</li>
+        <li>You give LibreCrawl a starting URL (e.g. yoursite.com).</li>
         <li>It loads that page and finds every link on it.</li>
         <li>
           It follows each of those links, loads those pages too, and repeats — until it has
@@ -51,6 +53,10 @@ export default function LibreCrawlLesson1Page() {
         </li>
         <li>At the end, you get a report you can scan through, sorted by problem type.</li>
       </ul>
+
+      <Figure caption="Starting from the home page, the crawler follows every link it finds. Problems it notices along the way — a broken link, a slow page — get collected into one report.">
+        <LibreCrawlFlowDiagram />
+      </Figure>
 
       <h2>Key words, explained simply</h2>
       <ul>
@@ -71,35 +77,87 @@ export default function LibreCrawlLesson1Page() {
           website easy for search engines to read and rank well — a lot of what LibreCrawl checks
           (titles, broken links, page structure) directly affects this.
         </li>
+        <li>
+          <strong>Crawl depth</strong>: how many clicks away from the starting page something is.
+          The home page is depth 0; a page linked from the home page is depth 1; a page linked
+          from <em>that</em> page is depth 2, and so on. Pages buried very deep are harder for
+          both visitors and search engines to find.
+        </li>
+        <li>
+          <strong>Sitemap</strong>: a plain list of every page on a site, kept in one file, so a
+          crawler doesn&apos;t have to hunt for pages through links alone. Not every site has one
+          — LibreCrawl works fine either way, it just crawls by following links if there isn&apos;t
+          one.
+        </li>
       </ul>
 
-      <h2>Examples</h2>
+      <h2>See it in action</h2>
 
-      <Example title="finding broken links">
+      <Walkthrough title="Finding broken links">
         <p>
-          A website has a page that links to <code>example.com/old-promo</code>, but that page was
-          deleted months ago. A human visitor who clicks that link gets an error page. LibreCrawl
-          crawls the whole site, tries every link, and flags: &ldquo;this link points to a page
-          that returns an error — fix it.&rdquo;
+          A website has a page that links to <code>yoursite.com/old-promo</code>, but that page
+          was deleted months ago. A human visitor who clicks that link gets an error page.
+          LibreCrawl crawls the whole site, tries every link, and flags: &ldquo;this link points
+          to a page that returns an error — fix it.&rdquo;
         </p>
-      </Example>
+      </Walkthrough>
 
-      <Example title="finding missing page titles">
+      <Walkthrough title="Finding missing page titles">
         <p>
           Every page is supposed to have a title (the text shown in the browser tab and in Google
           search results). If someone forgot to add one to a page, LibreCrawl notices that page
           has no title and lists it in the report, so it can be fixed before it hurts the
           site&apos;s search ranking.
         </p>
-      </Example>
+      </Walkthrough>
 
-      <Example title="finding slow pages">
+      <Walkthrough title="Finding slow pages">
         <p>
           LibreCrawl times how long each page takes to load while crawling. If one page is far
           slower than the rest (maybe it has a huge, unoptimized image), it shows up clearly in
           the report as an outlier worth investigating.
         </p>
-      </Example>
+      </Walkthrough>
+
+      <h2>A few more notes</h2>
+
+      <h3>Reading a crawl report</h3>
+      <p>Crawl reports usually group problems by type rather than listing pages randomly, so:</p>
+      <ul>
+        <li>
+          <strong>Errors</strong> (like broken links) are the most urgent — a visitor hits a dead
+          end.
+        </li>
+        <li>
+          <strong>Warnings</strong> (like a missing title, or a page that&apos;s slow but still
+          works) are worth fixing, but nothing is actively broken yet.
+        </li>
+        <li>
+          <strong>Notices</strong> (small things, like a page being unusually long) are the lowest
+          priority — good to know, rarely urgent.
+        </li>
+      </ul>
+      <p>
+        A good habit is fixing every error first, then working down the list — trying to fix
+        everything at once on a big site is overwhelming and usually unnecessary.
+      </p>
+
+      <h3>Why not just check the site by hand?</h3>
+      <p>
+        For a 3-page site, checking by hand is completely reasonable. The value of a crawler shows
+        up as a site grows — a crawler doesn&apos;t get bored, doesn&apos;t skip a page because
+        it&apos;s tedious, and can re-check the entire site again in minutes after every round of
+        changes, something no person can realistically keep doing by hand every week.
+      </p>
+
+      <h3>What a crawler can&apos;t judge for you</h3>
+      <p>
+        LibreCrawl is very good at finding things that are objectively broken — a link either
+        works or it doesn&apos;t, a title either exists or it doesn&apos;t. It can&apos;t tell you
+        whether your writing is good, whether a page is <em>useful</em>, or whether the design
+        looks nice. Think of it as a technical inspection, not a review of the content itself —
+        the two are different jobs.
+      </p>
 
       <Callout title="One-sentence summary" variant="summary">
         <p>

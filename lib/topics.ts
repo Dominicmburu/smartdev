@@ -19,6 +19,8 @@ export interface Topic {
   /** One-line description shown on the homepage and topic landing page */
   description: string;
   lessons: Lesson[];
+  /** Whether this topic has a /quiz route. Defaults to true when omitted. */
+  hasQuiz?: boolean;
 }
 
 export const topics: Topic[] = [
@@ -33,17 +35,31 @@ export const topics: Topic[] = [
     title: "Matomo",
     description: "See how visitors use a website, without handing the data to a third party.",
     lessons: [{ slug: "lesson-1", title: "What is Matomo, and why do websites need it?" }],
+    hasQuiz: false,
   },
   {
     slug: "librecrawl",
     title: "LibreCrawl",
     description: "Automatically check every page of a website for broken links and other problems.",
     lessons: [{ slug: "lesson-1", title: "What is LibreCrawl, and what's a 'crawler'?" }],
+    hasQuiz: false,
   },
   {
     slug: "git",
     title: "Git",
     description: "Track changes to files over time and collaborate without overwriting each other's work.",
+    lessons: [],
+  },
+  {
+    slug: "css",
+    title: "CSS",
+    description: "The language that controls how a web page looks.",
+    lessons: [],
+  },
+  {
+    slug: "js",
+    title: "JavaScript",
+    description: "The language that makes a web page interactive.",
     lessons: [],
   },
 ];

@@ -1,8 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { topics } from "@/lib/topics";
+
+function isWithinTopic(pathname: string, topicSlug: string) {
+  return pathname === `/${topicSlug}` || pathname.startsWith(`/${topicSlug}/`);
+}
 
 function NavLink({
   href,
@@ -30,36 +35,96 @@ function NavLink({
   );
 }
 
+function ChevronIcon({ open }: { open: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      fill="none"
+      className={`h-4 w-4 shrink-0 stroke-neutral-500 transition-transform duration-150 dark:stroke-neutral-400 ${
+        open ? "rotate-90" : ""
+      }`}
+      aria-hidden="true"
+    >
+      <path d="M7 4.5 L13 10 L7 15.5" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 /** Sidebar contents, shared between the static desktop sidebar and the mobile drawer. */
 function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
+  const [openSlugs, setOpenSlugs] = useState<Set<string>>(
+    () => new Set(topics.filter((t) => isWithinTopic(pathname, t.slug)).map((t) => t.slug)),
+  );
+
+  // Whenever navigation lands inside a topic, make sure that topic's
+  // dropdown is expanded (without collapsing any others the user opened).
+  useEffect(() => {
+    const active = topics.find((t) => isWithinTopic(pathname, t.slug));
+    if (active) {
+      setOpenSlugs((prev) => (prev.has(active.slug) ? prev : new Set(prev).add(active.slug)));
+    }
+  }, [pathname]);
+
+  function toggleTopic(slug: string) {
+    setOpenSlugs((prev) => {
+      const next = new Set(prev);
+      if (next.has(slug)) {
+        next.delete(slug);
+      } else {
+        next.add(slug);
+      }
+      return next;
+    });
+  }
 
   return (
-    <nav className="space-y-6 p-4">
+    <nav className="space-y-1 p-4">
       {topics.map((topic) => {
         const topicHref = `/${topic.slug}`;
+        const isOpen = openSlugs.has(topic.slug);
+        const hasChildren = topic.lessons.length > 0 || topic.hasQuiz !== false;
+
         return (
           <div key={topic.slug}>
-            <NavLink href={topicHref} active={pathname === topicHref} onNavigate={onNavigate}>
-              {topic.title}
-            </NavLink>
-            <div className="mt-1 ml-3 space-y-1 border-l border-neutral-200 pl-3 dark:border-neutral-800">
-              {topic.lessons.map((lesson) => {
-                const href = `/${topic.slug}/${lesson.slug}`;
-                return (
-                  <NavLink key={lesson.slug} href={href} active={pathname === href} onNavigate={onNavigate}>
-                    {lesson.title}
-                  </NavLink>
-                );
-              })}
-              <NavLink
-                href={`/${topic.slug}/quiz`}
-                active={pathname === `/${topic.slug}/quiz`}
-                onNavigate={onNavigate}
-              >
-                Quiz
+            <div className="flex items-center gap-1">
+              <NavLink href={topicHref} active={pathname === topicHref} onNavigate={onNavigate}>
+                <span className="block flex-1">{topic.title}</span>
               </NavLink>
+              {hasChildren && (
+                <button
+                  type="button"
+                  onClick={() => toggleTopic(topic.slug)}
+                  aria-expanded={isOpen}
+                  aria-label={`${isOpen ? "Collapse" : "Expand"} ${topic.title}`}
+                  className="shrink-0 rounded-md p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                >
+                  <ChevronIcon open={isOpen} />
+                </button>
+              )}
             </div>
+
+            {hasChildren && isOpen && (
+              <div className="mt-1 ml-3 space-y-1 border-l border-neutral-200 pl-3 dark:border-neutral-800">
+                {topic.lessons.map((lesson) => {
+                  const href = `/${topic.slug}/${lesson.slug}`;
+                  return (
+                    <NavLink key={lesson.slug} href={href} active={pathname === href} onNavigate={onNavigate}>
+                      {lesson.title}
+                    </NavLink>
+                  );
+                })}
+                {topic.hasQuiz !== false && (
+                  <NavLink
+                    href={`/${topic.slug}/quiz`}
+                    active={pathname === `/${topic.slug}/quiz`}
+                    onNavigate={onNavigate}
+                  >
+                    Quiz
+                  </NavLink>
+                )}
+              </div>
+            )}
           </div>
         );
       })}
@@ -70,11 +135,10 @@ function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
 export default function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (
     <>
-      {/* Desktop sidebar: always visible at md+ */}
-      <aside className="hidden md:block md:w-64 md:shrink-0 md:border-r md:border-neutral-200 dark:md:border-neutral-800">
-        <div className="sticky top-14 max-h-[calc(100vh-3.5rem)] overflow-y-auto">
-          <SidebarNav />
-        </div>
+      {/* Desktop sidebar: fixed to the viewport below the header, so it never
+          scrolls with the page — only its own contents scroll if they overflow. */}
+      <aside className="hidden md:fixed md:inset-y-0 md:top-14 md:left-0 md:block md:h-[calc(100vh-3.5rem)] md:w-64 md:overflow-y-auto md:border-r md:border-neutral-200 md:bg-white dark:md:border-neutral-800 dark:md:bg-neutral-950">
+        <SidebarNav />
       </aside>
 
       {/* Mobile off-canvas drawer */}

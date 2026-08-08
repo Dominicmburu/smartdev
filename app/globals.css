@@ -22,6 +22,9 @@ html:not(.dark) {
   .lesson-content h2 {
     @apply mt-8 text-lg font-semibold text-neutral-900 dark:text-white;
   }
+  .lesson-content h3 {
+    @apply mt-6 text-base font-semibold text-neutral-900 dark:text-white;
+  }
   .lesson-content p {
     @apply mt-3 leading-relaxed text-neutral-700 dark:text-neutral-300;
   }

@@ -27,10 +27,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <ThemeToggle />
       </header>
 
-      <div className="mx-auto flex max-w-6xl md:items-start">
-        <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-        <main className="min-w-0 flex-1 px-4 py-8 sm:px-8">{children}</main>
-      </div>
+      <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <main className="min-w-0 px-4 py-8 sm:px-8 md:ml-64">{children}</main>
     </div>
   );
 }

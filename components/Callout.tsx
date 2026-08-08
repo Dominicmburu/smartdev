@@ -1,10 +1,10 @@
-// Reusable box for worked examples and key-term call-outs, so every lesson
-// page looks consistent without each one hand-rolling its own styling.
+// Reusable box for worked walkthroughs and key-term call-outs, so every
+// lesson page looks consistent without each one hand-rolling its own styling.
 
-type CalloutVariant = "example" | "note" | "summary";
+type CalloutVariant = "walkthrough" | "note" | "summary";
 
 const VARIANT_STYLES: Record<CalloutVariant, string> = {
-  example:
+  walkthrough:
     "border-neutral-300 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-900",
   note: "border-blue-300 bg-blue-50 dark:border-blue-900 dark:bg-blue-950/40",
   summary:
@@ -28,9 +28,10 @@ export function Callout({
   );
 }
 
-export function Example({ title, children }: { title: string; children: React.ReactNode }) {
+/** A worked, step-by-step walkthrough box. Title should read as a standalone heading. */
+export function Walkthrough({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <Callout title={`Example — ${title}`} variant="example">
+    <Callout title={title} variant="walkthrough">
       {children}
     </Callout>
   );
