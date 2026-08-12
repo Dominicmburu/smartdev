@@ -31,10 +31,23 @@ html:not(.dark) {
   .lesson-content ul {
     @apply mt-3 list-disc space-y-1 pl-5 text-neutral-700 dark:text-neutral-300;
   }
+  .lesson-content ol {
+    @apply mt-3 list-decimal space-y-1 pl-5 text-neutral-700 dark:text-neutral-300;
+  }
   .lesson-content li > strong {
     @apply text-neutral-900 dark:text-white;
   }
   .lesson-content strong {
     @apply font-semibold text-neutral-900 dark:text-white;
+  }
+  .lesson-content table {
+    @apply mt-3 w-full border-collapse text-sm;
+  }
+  .lesson-content th,
+  .lesson-content td {
+    @apply border border-neutral-200 px-3 py-2 text-left align-top text-neutral-700 dark:border-neutral-800 dark:text-neutral-300;
+  }
+  .lesson-content th {
+    @apply bg-neutral-50 font-semibold text-neutral-900 dark:bg-neutral-900 dark:text-white;
   }
 }

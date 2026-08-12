@@ -1,6 +1,7 @@
 import { Walkthrough, Callout } from "@/components/Callout";
 import { Figure } from "@/components/Figure";
 import { LibreCrawlFlowDiagram } from "@/components/diagrams/LibreCrawlFlowDiagram";
+import { VideoEmbed } from "@/components/VideoEmbed";
 
 export default function LibreCrawlLesson1Page() {
   return (
@@ -90,6 +91,20 @@ export default function LibreCrawlLesson1Page() {
           one.
         </li>
       </ul>
+
+      <h2>Watch it in action</h2>
+      <VideoEmbed
+        videoId="4_IX9FK142Y"
+        title="How to use LibreCrawl similar to Screaming Frog and DeepCrawl for SEO analytics"
+        caption="A walkthrough of LibreCrawl's interface and what a crawl report looks like in practice."
+      />
+      <Callout title="Community video, not official" variant="note">
+        <p>
+          This is a third-party tutorial, not something published by LibreCrawl&apos;s
+          maintainers — preview it yourself before showing it in a live session, the same way
+          you&apos;d skim any external resource before handing it to a class.
+        </p>
+      </Callout>
 
       <h2>See it in action</h2>
 

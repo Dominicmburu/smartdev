@@ -41,7 +41,17 @@ export const topics: Topic[] = [
     slug: "librecrawl",
     title: "LibreCrawl",
     description: "Automatically check every page of a website for broken links and other problems.",
-    lessons: [{ slug: "lesson-1", title: "What is LibreCrawl, and what's a 'crawler'?" }],
+    lessons: [
+      { slug: "lesson-1", title: "What is LibreCrawl, and what's a 'crawler'?" },
+      { slug: "lesson-2", title: "Setting up and running your first crawl" },
+      { slug: "lesson-3", title: "Reading the report: status codes" },
+      { slug: "lesson-4", title: "Redirects and redirect chains" },
+      { slug: "lesson-5", title: "On-page signals: titles, meta descriptions, canonicals" },
+      { slug: "lesson-6", title: "Configuring a crawl" },
+      { slug: "lesson-7", title: "Images and page speed" },
+      { slug: "lesson-8", title: "Turning a crawl into an action plan" },
+      { slug: "lesson-9", title: "Final project: audit a real site" },
+    ],
     hasQuiz: false,
   },
   {
