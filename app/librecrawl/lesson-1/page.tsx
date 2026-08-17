@@ -94,8 +94,8 @@ export default function LibreCrawlLesson1Page() {
 
       <h2>Watch it in action</h2>
       <VideoEmbed
-        videoId="4_IX9FK142Y"
-        title="How to use LibreCrawl similar to Screaming Frog and DeepCrawl for SEO analytics"
+        videoId="QwY1j1SERoc"
+        title="How to use LibreCrawl similar to Screaming Frog and DeepCrawl for SEO Analytics"
         caption="A walkthrough of LibreCrawl's interface and what a crawl report looks like in practice."
       />
       <Callout title="Community video, not official" variant="note">
