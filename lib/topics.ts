@@ -34,7 +34,17 @@ export const topics: Topic[] = [
     slug: "matomo",
     title: "Matomo",
     description: "See how visitors use a website, without handing the data to a third party.",
-    lessons: [{ slug: "lesson-1", title: "What is Matomo, and why do websites need it?" }],
+    lessons: [
+      { slug: "lesson-1", title: "What is Matomo, and why do websites need it?" },
+      { slug: "lesson-2", title: "Setting up Matomo and adding the tracking code" },
+      { slug: "lesson-3", title: "Reading the dashboard: visits, visitors, and real-time" },
+      { slug: "lesson-4", title: "Where visitors come from: referrers and channels" },
+      { slug: "lesson-5", title: "What visitors do: pages, events, and site search" },
+      { slug: "lesson-6", title: "Goals and conversions" },
+      { slug: "lesson-7", title: "Segments: slicing data by who visitors are" },
+      { slug: "lesson-8", title: "Privacy and consent: cookies, anonymization, and GDPR" },
+      { slug: "lesson-9", title: "Final project: set up analytics and report on a real site" },
+    ],
     hasQuiz: false,
   },
   {

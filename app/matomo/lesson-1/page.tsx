@@ -1,6 +1,7 @@
 import { Walkthrough, Callout } from "@/components/Callout";
 import { Figure } from "@/components/Figure";
 import { MatomoFlowDiagram } from "@/components/diagrams/MatomoFlowDiagram";
+import { VideoEmbed } from "@/components/VideoEmbed";
 
 export default function MatomoLesson1Page() {
   return (
@@ -75,6 +76,20 @@ export default function MatomoLesson1Page() {
           address directly).
         </li>
       </ul>
+
+      <h2>Watch it in action</h2>
+      <VideoEmbed
+        videoId="Qc2kooLNDiU"
+        title="Your introduction to Matomo Analytics!"
+        caption="A short introduction to what Matomo is and what it looks like, from Matomo's own channel."
+      />
+      <Callout title="Preview before presenting" variant="note">
+        <p>
+          This looks to be from Matomo&apos;s official YouTube channel based on search indexing,
+          but preview it yourself before showing it live — the same caution applies to any
+          external resource.
+        </p>
+      </Callout>
 
       <h2>See it in action</h2>
 
