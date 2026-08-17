@@ -57,9 +57,9 @@ python main.py --local`}</CodeBlock>
 
       <h2>Watch it in action</h2>
       <VideoEmbed
-        videoId="qNh2vnvJkw4"
-        title="How to install LibreCrawl step by step guide on Windows 11"
-        caption="A step-by-step Windows 11 install, if you'd rather watch the process than follow the commands above."
+        videoId="QwY1j1SERoc"
+        title="How to use LibreCrawl similar to Screaming Frog and DeepCrawl for SEO Analytics"
+        caption="A walkthrough of getting LibreCrawl running and using it, if you'd rather watch the process than follow the commands above."
       />
       <Callout title="Community video, not official" variant="note">
         <p>
