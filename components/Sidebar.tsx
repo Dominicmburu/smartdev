@@ -114,6 +114,15 @@ function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
                     </NavLink>
                   );
                 })}
+                {topic.lessons.length > 0 && (
+                  <NavLink
+                    href={`/${topic.slug}/notes`}
+                    active={pathname === `/${topic.slug}/notes`}
+                    onNavigate={onNavigate}
+                  >
+                    Notes
+                  </NavLink>
+                )}
                 {topic.hasQuiz !== false && (
                   <NavLink
                     href={`/${topic.slug}/quiz`}
