@@ -28,7 +28,17 @@ export const topics: Topic[] = [
     slug: "docker",
     title: "Docker",
     description: "Package an app with everything it needs so it runs the same way everywhere.",
-    lessons: [{ slug: "lesson-1", title: "What is Docker, really?" }],
+    lessons: [
+      { slug: "lesson-1", title: "What is Docker, really?" },
+      { slug: "lesson-2", title: "Writing your own Dockerfile" },
+      { slug: "lesson-3", title: "Volumes: making data survive a container" },
+      { slug: "lesson-4", title: "Docker networking: letting containers talk to each other" },
+      { slug: "lesson-5", title: "Docker Compose: running multiple containers together" },
+      { slug: "lesson-6", title: "Configuration: environment variables and .env files" },
+      { slug: "lesson-7", title: "Debugging a container: logs, exec, and inspect" },
+      { slug: "lesson-8", title: "Writing a better Dockerfile: size, caching, and multi-stage builds" },
+      { slug: "lesson-9", title: "Final project: containerize a real app" },
+    ],
   },
   {
     slug: "matomo",
