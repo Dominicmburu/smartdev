@@ -7,8 +7,8 @@ export default function GitTopicPage() {
       intro={
         <p>
           Git is a tool for tracking changes to files over time, so you can see history and
-          collaborate without overwriting each other&apos;s work. Lessons for this topic haven&apos;t
-          been written yet.
+          collaborate without overwriting each other&apos;s work. Start with the first lesson
+          below.
         </p>
       }
     />
